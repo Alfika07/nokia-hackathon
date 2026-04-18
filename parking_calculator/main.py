@@ -24,12 +24,11 @@ def main():
     data = Path("input.txt").read_text(encoding="utf-8")
     parsed = (re.split(r"\t+", x.strip()) for x in data.split("\n")[2:] if x.strip())
     fmt = "%Y-%m-%d %H:%M:%S"
-    with open("result.txt", "w", encoding="utf-8") as file:
-        for [_, arrival, departure] in parsed:
-            try:
-                file.write(str(parking_fee(datetime.strptime(arrival, fmt), datetime.strptime(departure, fmt))) + "\n")
-            except ValueError as e:
-                print(f"Invalid format: {e.args[0]}")
+    for [_, arrival, departure] in parsed:
+        try:
+            print(parking_fee(datetime.strptime(arrival, fmt), datetime.strptime(departure, fmt)))
+        except ValueError:
+            pass
 
 
 if __name__ == "__main__":
