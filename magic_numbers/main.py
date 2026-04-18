@@ -22,7 +22,8 @@ def main():
     data = Path("input.txt").read_text(encoding="utf-8")
     parsed = (x.strip() for x in data.split("\n") if x.strip())
     for num in parsed:
-        print(next_magic_num(num))
+        if num.isdigit():
+            print(next_magic_num(num))
 
 
 if __name__ == "__main__":
